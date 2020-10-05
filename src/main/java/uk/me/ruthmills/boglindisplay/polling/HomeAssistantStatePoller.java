@@ -8,12 +8,16 @@ import org.springframework.stereotype.Component;
 
 import uk.me.ruthmills.boglindisplay.service.GotekDisplayService;
 import uk.me.ruthmills.boglindisplay.service.HomeAssistantStateService;
+import uk.me.ruthmills.boglindisplay.service.MomentarySwitchService;
 
 @Component
 public class HomeAssistantStatePoller {
 
 	@Autowired
 	private HomeAssistantStateService homeAssistantStateService;
+
+	@Autowired
+	private MomentarySwitchService momentarySwitchService;
 
 	@Autowired
 	private GotekDisplayService gotekDisplayService;
@@ -24,8 +28,9 @@ public class HomeAssistantStatePoller {
 	public void tick() {
 		try {
 			homeAssistantStateService.updateStates();
-			String temperature = homeAssistantStateService.getInsideAirTemperature();
-			gotekDisplayService.displayText(temperature);
+			if (!momentarySwitchService.isShowingDisplayName()) {
+				gotekDisplayService.displayText(homeAssistantStateService.getDisplayValue());
+			}
 		} catch (Exception ex) {
 			logger.error("Exception in poller thread", ex);
 		}

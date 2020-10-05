@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import uk.me.ruthmills.boglindisplay.model.BoglinDisplayType;
 import uk.me.ruthmills.boglindisplay.service.HomeAssistantQueryService;
 import uk.me.ruthmills.boglindisplay.service.HomeAssistantStateService;
 
@@ -30,6 +31,8 @@ public class HomeAssistantStateServiceImpl implements HomeAssistantStateService 
 	private String outsideAirHumidity;
 	private String outsideAirPressure;
 
+	private BoglinDisplayType displayType;
+
 	private static final Logger logger = LoggerFactory.getLogger(HomeAssistantStateServiceImpl.class);
 
 	@PostConstruct
@@ -39,31 +42,58 @@ public class HomeAssistantStateServiceImpl implements HomeAssistantStateService 
 		outsideAirTemperature = "   ";
 		outsideAirHumidity = "   ";
 		outsideAirPressure = "   ";
+
+		displayType = BoglinDisplayType.INSIDE_AIR_TEMPERATURE;
 	}
 
 	@Override
-	public String getInsideAirTemperature() {
-		return insideAirTemperature;
+	public String getDisplayName() {
+		switch (displayType) {
+		case INSIDE_AIR_TEMPERATURE:
+			return "iAt";
+		case INSIDE_AIR_HUMIDITY:
+			return "iAh";
+		case OUTSIDE_AIR_TEMPERATURE:
+			return "oAt";
+		case OUTSIDE_AIR_HUMIDITY:
+			return "oAh";
+		case OUTSIDE_AIR_PRESSURE:
+			return "bAr";
+		default:
+			return "   ";
+		}
 	}
 
 	@Override
-	public String getInsideAirHumidity() {
-		return insideAirHumidity;
+	public String getDisplayValue() {
+		switch (displayType) {
+		case INSIDE_AIR_TEMPERATURE:
+			return insideAirTemperature;
+		case INSIDE_AIR_HUMIDITY:
+			return insideAirHumidity;
+		case OUTSIDE_AIR_TEMPERATURE:
+			return outsideAirTemperature;
+		case OUTSIDE_AIR_HUMIDITY:
+			return outsideAirHumidity;
+		case OUTSIDE_AIR_PRESSURE:
+			return outsideAirPressure;
+		default:
+			return "   ";
+		}
 	}
 
-	@Override
-	public String getOutsideAirTemperature() {
-		return outsideAirTemperature;
-	}
-
-	@Override
-	public String getOutsideAirHumidity() {
-		return outsideAirHumidity;
-	}
-
-	@Override
-	public String getOutsideAirPressure() {
-		return outsideAirPressure;
+	public void cycleDisplayType() {
+		if (displayType.equals(BoglinDisplayType.INSIDE_AIR_TEMPERATURE)) {
+			displayType = BoglinDisplayType.INSIDE_AIR_HUMIDITY;
+		} else if (displayType.equals(BoglinDisplayType.INSIDE_AIR_HUMIDITY)) {
+			displayType = BoglinDisplayType.OUTSIDE_AIR_TEMPERATURE;
+		} else if (displayType.equals(BoglinDisplayType.OUTSIDE_AIR_TEMPERATURE)) {
+			displayType = BoglinDisplayType.OUTSIDE_AIR_HUMIDITY;
+		} else if (displayType.equals(BoglinDisplayType.OUTSIDE_AIR_HUMIDITY)) {
+			displayType = BoglinDisplayType.OUTSIDE_AIR_PRESSURE;
+		} else {
+			displayType = BoglinDisplayType.INSIDE_AIR_TEMPERATURE;
+		}
 	}
 
 	@Override

@@ -2,15 +2,11 @@ package uk.me.ruthmills.boglindisplay.service;
 
 public interface HomeAssistantStateService {
 
-	public String getInsideAirTemperature();
+	public String getDisplayName();
 
-	public String getInsideAirHumidity();
+	public String getDisplayValue();
 
-	public String getOutsideAirTemperature();
-
-	public String getOutsideAirHumidity();
-
-	public String getOutsideAirPressure();
+	public void cycleDisplayType();
 
 	public void updateStates();
 }
