@@ -7,13 +7,13 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import uk.me.ruthmills.boglindisplay.service.GotekDisplayService;
-import uk.me.ruthmills.boglindisplay.service.HomeAssistantQueryService;
+import uk.me.ruthmills.boglindisplay.service.HomeAssistantStateService;
 
 @Component
 public class HomeAssistantStatePoller {
 
 	@Autowired
-	private HomeAssistantQueryService homeAssistantQueryService;
+	private HomeAssistantStateService homeAssistantStateService;
 
 	@Autowired
 	private GotekDisplayService gotekDisplayService;
@@ -23,7 +23,8 @@ public class HomeAssistantStatePoller {
 	@Scheduled(cron = "0 */1 * * * *")
 	public void tick() {
 		try {
-			String temperature = homeAssistantQueryService.querySensor("sensor.big_bedroom_filtered_temperature");
+			homeAssistantStateService.updateStates();
+			String temperature = homeAssistantStateService.getInsideAirTemperature();
 			gotekDisplayService.displayText(temperature);
 		} catch (Exception ex) {
 			logger.error("Exception in poller thread", ex);
