@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -71,6 +72,7 @@ public class TemperatureAndHumidityServiceImpl implements TemperatureAndHumidity
 							logger.debug("Temperature: <" + temperature + ">");
 							temperatureAndHumidityBean.setHumidity(new BigDecimal(humidity));
 							temperatureAndHumidityBean.setTemperature(new BigDecimal(temperature));
+							temperatureAndHumidityBean.setReadTime(LocalDateTime.now());
 						}
 					} while (line != null);
 				} catch (Exception ex) {
