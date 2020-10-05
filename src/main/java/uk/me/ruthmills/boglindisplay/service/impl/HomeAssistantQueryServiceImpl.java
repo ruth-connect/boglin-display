@@ -1,5 +1,7 @@
 package uk.me.ruthmills.boglindisplay.service.impl;
 
+import java.util.Map;
+
 import javax.annotation.PostConstruct;
 
 import org.apache.http.client.config.RequestConfig;
@@ -8,6 +10,8 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.json.JsonParser;
+import org.springframework.boot.json.JsonParserFactory;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -56,9 +60,15 @@ public class HomeAssistantQueryServiceImpl implements HomeAssistantQueryService 
 		ResponseEntity<String> response = restTemplate.exchange(sensorEndpoint, HttpMethod.GET,
 				new HttpEntity<String>("", headers), String.class);
 
-		String json = response.getBody();
-		logger.info("JSON response: " + json);
+		String jsonString = response.getBody();
+		logger.info("JSON response: " + jsonString);
 
-		return null;
+		JsonParser jsonParser = JsonParserFactory.getJsonParser();
+		Map<String, Object> jsonMap = jsonParser.parseMap(jsonString);
+
+		String state = jsonMap.get("state").toString();
+		logger.info("Sensor state: " + state);
+
+		return state;
 	}
 }
