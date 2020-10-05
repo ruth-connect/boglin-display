@@ -84,10 +84,10 @@ public class HomeAssistantStateServiceImpl implements HomeAssistantStateService 
 
 	public void cycleDisplayType() {
 		if (displayType.equals(BoglinDisplayType.INSIDE_AIR_TEMPERATURE)) {
-			displayType = BoglinDisplayType.INSIDE_AIR_HUMIDITY;
-		} else if (displayType.equals(BoglinDisplayType.INSIDE_AIR_HUMIDITY)) {
 			displayType = BoglinDisplayType.OUTSIDE_AIR_TEMPERATURE;
 		} else if (displayType.equals(BoglinDisplayType.OUTSIDE_AIR_TEMPERATURE)) {
+			displayType = BoglinDisplayType.INSIDE_AIR_HUMIDITY;
+		} else if (displayType.equals(BoglinDisplayType.INSIDE_AIR_HUMIDITY)) {
 			displayType = BoglinDisplayType.OUTSIDE_AIR_HUMIDITY;
 		} else if (displayType.equals(BoglinDisplayType.OUTSIDE_AIR_HUMIDITY)) {
 			displayType = BoglinDisplayType.OUTSIDE_AIR_PRESSURE;
