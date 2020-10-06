@@ -58,7 +58,7 @@ public class HomeAssistantStateServiceImpl implements HomeAssistantStateService 
 		case OUTSIDE_AIR_HUMIDITY:
 			return "oAh";
 		case OUTSIDE_AIR_PRESSURE:
-			return "bAr";
+			return "oAP";
 		default:
 			return "   ";
 		}
