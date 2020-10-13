@@ -66,7 +66,7 @@ public class MomentarySwitchServiceImpl implements MomentarySwitchService {
 					if (momentarySwitch.isHigh()) {
 						homeAssistantStateService.cycleDisplayType();
 						gotekDisplayService.displayText(homeAssistantStateService.getDisplayName());
-						countdown = 100;
+						countdown = 50;
 
 						while (momentarySwitch.isHigh()) {
 							Thread.sleep(20);
