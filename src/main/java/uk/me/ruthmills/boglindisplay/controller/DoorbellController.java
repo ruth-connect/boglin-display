@@ -18,4 +18,9 @@ public class DoorbellController {
 	public void ringDoorbell() {
 		doorbellService.ringDoorbell();
 	}
+
+	@RequestMapping(value = "/driveDisconnected", method = RequestMethod.POST)
+	public void driveDisconnected() {
+		doorbellService.driveDisconnected();
+	}
 }

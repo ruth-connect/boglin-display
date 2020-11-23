@@ -15,18 +15,59 @@ public class DoorbellServiceImpl implements DoorbellService {
 	@Override
 	public void ringDoorbell() {
 		buzzerService.setBuzzer(true);
-		sleep();
+		sleep(500);
 		buzzerService.setBuzzer(false);
-		sleep();
+		sleep(500);
 		buzzerService.setBuzzer(true);
-		sleep();
+		sleep(500);
 		buzzerService.setBuzzer(false);
 	}
 
-	private void sleep() {
+	private void sleep(int milliseconds) {
 		try {
-			Thread.sleep(500);
+			Thread.sleep(milliseconds);
 		} catch (InterruptedException ex) {
 		}
+	}
+
+	@Override
+	public void driveDisconnected() {
+		buzzerService.setBuzzer(true);
+		sleep(250);
+		buzzerService.setBuzzer(false);
+		sleep(250);
+		buzzerService.setBuzzer(true);
+		sleep(250);
+		buzzerService.setBuzzer(false);
+		sleep(250);
+		buzzerService.setBuzzer(true);
+		sleep(250);
+		buzzerService.setBuzzer(false);
+		sleep(500);
+
+		buzzerService.setBuzzer(true);
+		sleep(250);
+		buzzerService.setBuzzer(false);
+		sleep(250);
+		buzzerService.setBuzzer(true);
+		sleep(250);
+		buzzerService.setBuzzer(false);
+		sleep(250);
+		buzzerService.setBuzzer(true);
+		sleep(250);
+		buzzerService.setBuzzer(false);
+		sleep(500);
+
+		buzzerService.setBuzzer(true);
+		sleep(250);
+		buzzerService.setBuzzer(false);
+		sleep(250);
+		buzzerService.setBuzzer(true);
+		sleep(250);
+		buzzerService.setBuzzer(false);
+		sleep(250);
+		buzzerService.setBuzzer(true);
+		sleep(250);
+		buzzerService.setBuzzer(false);
 	}
 }
