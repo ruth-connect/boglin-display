@@ -43,7 +43,7 @@ public class DoorbellServiceImpl implements DoorbellService {
 		buzzerService.setBuzzer(true);
 		sleep(250);
 		buzzerService.setBuzzer(false);
-		sleep(500);
+		sleep(750);
 
 		buzzerService.setBuzzer(true);
 		sleep(250);
@@ -56,7 +56,7 @@ public class DoorbellServiceImpl implements DoorbellService {
 		buzzerService.setBuzzer(true);
 		sleep(250);
 		buzzerService.setBuzzer(false);
-		sleep(500);
+		sleep(750);
 
 		buzzerService.setBuzzer(true);
 		sleep(250);
