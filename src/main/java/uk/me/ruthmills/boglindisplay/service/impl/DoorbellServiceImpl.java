@@ -56,18 +56,5 @@ public class DoorbellServiceImpl implements DoorbellService {
 		buzzerService.setBuzzer(true);
 		sleep(250);
 		buzzerService.setBuzzer(false);
-		sleep(750);
-
-		buzzerService.setBuzzer(true);
-		sleep(250);
-		buzzerService.setBuzzer(false);
-		sleep(250);
-		buzzerService.setBuzzer(true);
-		sleep(250);
-		buzzerService.setBuzzer(false);
-		sleep(250);
-		buzzerService.setBuzzer(true);
-		sleep(250);
-		buzzerService.setBuzzer(false);
 	}
 }
