@@ -23,4 +23,9 @@ public class DoorbellController {
 	public void driveDisconnected() {
 		doorbellService.driveDisconnected();
 	}
+
+	@RequestMapping(value = "/volumesRemounted", method = RequestMethod.POST)
+	public void drivesRemounted() {
+		doorbellService.volumesRemounted();
+	}
 }

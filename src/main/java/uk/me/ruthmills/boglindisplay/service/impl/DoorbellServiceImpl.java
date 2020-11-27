@@ -57,4 +57,23 @@ public class DoorbellServiceImpl implements DoorbellService {
 		sleep(250);
 		buzzerService.setBuzzer(false);
 	}
+
+	@Override
+	public void volumesRemounted() {
+		buzzerService.setBuzzer(true);
+		sleep(250);
+		buzzerService.setBuzzer(false);
+		sleep(250);
+		buzzerService.setBuzzer(true);
+		sleep(250);
+		buzzerService.setBuzzer(false);
+		sleep(1250);
+		buzzerService.setBuzzer(true);
+		sleep(250);
+		buzzerService.setBuzzer(false);
+		sleep(250);
+		buzzerService.setBuzzer(true);
+		sleep(250);
+		buzzerService.setBuzzer(false);
+	}
 }
