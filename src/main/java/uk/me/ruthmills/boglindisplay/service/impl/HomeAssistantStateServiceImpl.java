@@ -20,7 +20,7 @@ public class HomeAssistantStateServiceImpl implements HomeAssistantStateService 
 	private static final String INSIDE_AIR_HUMIDITY = "sensor.big_bedroom_filtered_humidity";
 	private static final String OUTSIDE_AIR_TEMPERATURE = "sensor.outside_filtered_temperature";
 	private static final String OUTSIDE_AIR_HUMIDITY = "sensor.outside_filtered_humidity";
-	private static final String OUTSIDE_AIR_PRESSURE = "sensor.outside_filtered_air_pressure";
+	private static final String OUTSIDE_AIR_PRESSURE = "sensor.outside_air_pressure";
 
 	@Autowired
 	private HomeAssistantQueryService homeAssistantQueryService;
