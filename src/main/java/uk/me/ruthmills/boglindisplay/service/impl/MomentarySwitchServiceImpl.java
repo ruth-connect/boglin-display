@@ -72,7 +72,7 @@ public class MomentarySwitchServiceImpl implements MomentarySwitchService {
 							Thread.sleep(20);
 						}
 					}
-					Thread.sleep(20);
+					Thread.sleep(50);
 					if (countdown > 0) {
 						countdown--;
 						if (countdown == 0) {
